@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 define('IMG_PREFIX', 'Wassenphoto');
 define('PREFIXLEN', strlen(IMG_PREFIX));
-define ('DATEINTERVAL', 172800); // how many days back from the latest pic should be shown? eg. one week aka 604800sec.
+define ('DEFAULTRANGE', 172800); // how many days back from the latest pic should be shown? eg. one week aka 604800sec.
 
 $directory = './current/';
 
@@ -60,7 +60,7 @@ if(isset($_GET['newest'])){
 if(isset($_GET['oldest'])){
   $oldestRequested_ts = strtotime($_GET['oldest']);
 }else{
-  $oldestRequested_ts = time() - DATEINTERVAL;
+  $oldestRequested_ts = time() - DEFAULTRANGE;
 };
 //TODO: would be nice to decode the doublecolon in the url for the viewer, see https://stackoverflow.com/a/40256517/1331544
 //var_dump($oldest_ts);die;
@@ -85,7 +85,7 @@ $oldestRequested_date = date('Y-m-d\TH:i', $oldestRequested_ts);
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <title>JS-Wassenphoto</title> 
+    <title>Wassenphoto</title> 
     <style>
       img {
         max-height: 80vh;
@@ -116,29 +116,27 @@ $oldestRequested_date = date('Y-m-d\TH:i', $oldestRequested_ts);
     Wishes, advice, contributions welcome too ;-) </p>
     <p>We think <a href="calibration_images/daymax-Wassenphoto_2021-07-12_20-24-51.jpg">this is somewhere in the medium range</a>. Do you agree? And what about low and high?</p>
     <h2>Date Range</h2>
-<form action="<?=$_SERVER['PHP_SELF']?>" method="get">
-<fieldset>
-    <legend>Select</legend>
-<label for="newest">From</label>
-<input type="datetime-local" id="newest" name="newest" value="<?=$newestRequested_date?>" min="<?=$oldestFile_date?>" max="<?=$newestFile_date?>">
-<label for="oldest">to</label>
-<input type="datetime-local" id="oldest" name="oldest" value="<?=$oldestRequested_date?>" min="<?=$oldestFile_date?>" max="<?=$newestFile_date?>">
-<input type="submit" value="Submit">
-<form action="<?=$_SERVER['PHP_SELF']?>">
-  <input type="submit" value="Reset">
-</form>
-</fieldset>
-</form>
-<div class="webcam">
+    <form action="<?=$_SERVER['PHP_SELF']?>" method="get">
+      <fieldset>
+        <legend>Select</legend>
+        <label for="oldest">Oldest</label>
+          <input type="datetime-local" id="oldest" name="oldest" value="<?=$oldestRequested_date?>" min="<?=$oldestFile_date?>" max="<?=$newestFile_date?>">
+        <label for="newest">Newest</label>
+          <input type="datetime-local" id="newest" name="newest" value="<?=$newestRequested_date?>" min="<?=$oldestFile_date?>" max="<?=$newestFile_date?>">
+        <input type="submit" value="Submit">
+      </fieldset>
+    </form>
+    <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+      <input type="submit" value="Reset">
+    </form>
+
+    <div class="webcam">
 <?
-
-foreach($orderedFiles as $date => $name){
-  echo("    <h2>".date('M. d. H:i:s', $date)."</h2>\n");
-  echo("    <img src='".$name."' />\n\n");
-}
-
-
+    foreach($orderedFiles as $date => $name){
+      echo("    <h2>".date('M. d. H:i:s', $date)."</h2>\n");
+      echo("    <img src='".$name."' />\n\n");
+    }
 ?>
-</div>
+    </div>
   </body>
 </html>
