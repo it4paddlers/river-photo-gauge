@@ -103,6 +103,19 @@ $oldestRequested_date = date('Y-m-d\TH:i', $oldestRequested_ts);
         display: inline-block;
         padding: 10px;
       }
+      input[type="datetime-local"] {
+        position: relative;
+      }
+      input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        color: transparent;
+        background: transparent;
+      }
     </style>
   </head>
   <body>
