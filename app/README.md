@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# River Photo Gauge React App
+
+This is the React app for the River Photo Gauge project.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Installation
+
+Before running the development server, you need to install the package manager [Yarn](https://classic.yarnpkg.com/en/).
+
+To install the dependencies, run the command `yarn` in this directory, which will add the folder "node_modules".
 
 ## Available Scripts
 
