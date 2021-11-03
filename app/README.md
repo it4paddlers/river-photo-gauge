@@ -6,7 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Installation
 
-Before running the development server, you need to install the package manager [Yarn](https://classic.yarnpkg.com/en/).
+Before running the development server, you need to install the following:
+
+* [Node.js](https://nodejs.org/en/), a JavaScript runtime environment and 
+* [Yarn](https://classic.yarnpkg.com/en/), a package manager.
 
 To install the dependencies, run the command `yarn` in this directory, which will add the folder "node_modules".
 
