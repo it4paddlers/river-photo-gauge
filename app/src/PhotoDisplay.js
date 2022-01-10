@@ -49,32 +49,46 @@ class PhotoDisplay extends Component{
     return (
       <React.Fragment>
         <Segment basic as={Container}>
-          <Grid>
+          <Grid stackable>
             <Grid.Row>
-              <Grid.Column textAlign='center'>
-                <Slider ref={c => (this.slider = c)} {...settings}>
-                  {photoList.map((photo, i) => {
-                    const dateTime = this.getPhotoDateTime(photo);
-                    return (
-                      <div key={i}>
-                        <Header as='h4'>{dateTime}</Header>
-                        <Image centered size='large' src={photo} />
-                      </div>
-                    )
-                  })}
-                </Slider>
+              <Grid.Column width={12}>
+                <Grid>
+                  <Grid.Row>
+                    <Grid.Column textAlign='center'>
+                      <Slider ref={c => (this.slider = c)} {...settings}>
+                        {photoList.map((photo, i) => {
+                          const dateTime = this.getPhotoDateTime(photo);
+                          return (
+                              <div key={i}>
+                                <Header as='h4'>{dateTime}</Header>
+                                <Image centered size='large' src={photo} />
+                              </div>
+                          )
+                        })}
+                      </Slider>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={8} textAlign='right'>
+                      <Button small onClick={this.previous}>
+                        Previous
+                      </Button>
+                    </Grid.Column>
+                    <Grid.Column width={8} textAlign='left'>
+                      <Button small onClick={this.next}>
+                        Next
+                      </Button>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
               </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={8} textAlign='right'>
-                <Button small onClick={this.previous}>
-                  Previous
-                </Button>
-              </Grid.Column>
-              <Grid.Column width={8} textAlign='left'>
-                <Button small onClick={this.next}>
-                  Next
-                </Button>
+              <Grid.Column width={4} textAlign='center'>
+                <Header as='h4'>Low</Header>
+                <Image centered size='small' src={wassen1} />
+                <Header as='h4'>Med</Header>
+                <Image centered size='small' src={wassen4} />
+                <Header as='h4'>High</Header>
+                <Image centered size='small' src={wassen6} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
