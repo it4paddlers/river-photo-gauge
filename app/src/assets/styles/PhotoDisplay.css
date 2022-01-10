@@ -1,0 +1,11 @@
+.ui.header > i.icon.close-ref {
+  font-size: 1em;
+}
+
+.ui.header.ref-thumbnail {
+  margin-bottom: 0;
+}
+
+img.ref-thumbnail {
+  cursor: pointer;
+}
