@@ -37,10 +37,11 @@ class PhotoDisplay extends Component{
 
   render() {
     const settings = {
-      infinite: true,
-      speed: 500,
+      infinite: false,
+      speed: 0,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      fade: true
     };
 
     const photoList = [wassen, wassen1, wassen2, wassen3, wassen4, wassen5, wassen6]
