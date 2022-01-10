@@ -1,9 +1,6 @@
-// Import css files
 import React, { Component } from 'react';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import {Button, Container, Grid, Header, Image, Segment} from 'semantic-ui-react';
+import './assets/styles/PhotoDisplay.css';
+import {Button, Container, Grid, Header, Icon, Image, Segment} from 'semantic-ui-react';
 import wassen from './assets/images/Wassenphoto_2021-10-26_10-36-00.jpeg';
 import wassen1 from './assets/images/Wassenphoto_2021-10-26_11-36-00.jpeg';
 import wassen2 from './assets/images/Wassenphoto_2021-10-26_12-36-00.jpeg';
@@ -12,20 +9,64 @@ import wassen4 from './assets/images/Wassenphoto_2021-10-26_14-36-00.jpeg';
 import wassen5 from './assets/images/Wassenphoto_2021-10-26_15-36-00.jpeg';
 import wassen6 from './assets/images/Wassenphoto_2021-10-26_16-36-00.jpeg';
 
+const refIndexMap = {
+  0: 'Low',
+  1: 'Medium',
+  2: 'High'
+}
+
 class PhotoDisplay extends Component{
   constructor(props) {
     super(props);
+    this.state = {
+      photoIndex: 0,
+      photoList: [],
+      refPhotoShown: false,
+      refPhotoIndex: 0,
+      refPhotoList: []
+    };
+
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
+    this.showRef = this.showRef.bind(this);
+    this.hideRefPhoto = this.hideRefPhoto.bind(this);
     this.getPhotoDateTime = this.getPhotoDateTime.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      photoList: [wassen, wassen1, wassen2, wassen3, wassen4, wassen5, wassen6],
+      refPhotoList: [wassen, wassen2, wassen5]
+    });
+  }
+
   next() {
-    this.slider.slickNext();
+    this.hideRefPhoto();
+    if (this.state.photoIndex < this.state.photoList.length - 1) {
+      this.setState({
+        photoIndex: this.state.photoIndex + 1
+      });
+    }
   }
 
   previous() {
-    this.slider.slickPrev();
+    this.hideRefPhoto();
+    if (this.state.photoIndex > 0) {
+      this.setState({
+        photoIndex: this.state.photoIndex - 1}
+      );
+    }
+  }
+
+  showRef(refNum) {
+    this.setState({
+      refPhotoShown: true,
+      refPhotoIndex: refNum
+    });
+  }
+
+  hideRefPhoto() {
+    this.setState({refPhotoShown: false});
   }
 
   getPhotoDateTime(photoUrl) {
@@ -36,15 +77,17 @@ class PhotoDisplay extends Component{
   }
 
   render() {
-    const settings = {
-      infinite: false,
-      speed: 0,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      fade: true
-    };
-
-    const photoList = [wassen, wassen1, wassen2, wassen3, wassen4, wassen5, wassen6]
+    let dateTime;
+    let photoShown;
+    if (this.state.refPhotoShown) {
+      photoShown = this.state.refPhotoList[this.state.refPhotoIndex];
+      dateTime = "Reference: " + refIndexMap[this.state.refPhotoIndex];
+    } else {
+      photoShown = this.state.photoList[this.state.photoIndex]
+      if (this.state.photoList.length > 0) {
+        dateTime = this.getPhotoDateTime(photoShown);
+      }
+    }
 
     return (
       <React.Fragment>
@@ -55,27 +98,24 @@ class PhotoDisplay extends Component{
                 <Grid>
                   <Grid.Row>
                     <Grid.Column textAlign='center'>
-                      <Slider ref={c => (this.slider = c)} {...settings}>
-                        {photoList.map((photo, i) => {
-                          const dateTime = this.getPhotoDateTime(photo);
-                          return (
-                              <div key={i}>
-                                <Header as='h4'>{dateTime}</Header>
-                                <Image centered size='large' src={photo} />
-                              </div>
-                          )
-                        })}
-                      </Slider>
+                      <Header as='h4'>
+                        {this.state.refPhotoShown ?
+                            <Icon link name='close' className='close-ref' onClick={this.hideRefPhoto}/> :
+                            null
+                        }
+                        {dateTime}
+                      </Header>
+                      <Image centered size='large' src={photoShown} />
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
                     <Grid.Column width={8} textAlign='right'>
-                      <Button small onClick={this.previous}>
+                      <Button size='small' onClick={this.previous}>
                         Previous
                       </Button>
                     </Grid.Column>
                     <Grid.Column width={8} textAlign='left'>
-                      <Button small onClick={this.next}>
+                      <Button size='small' onClick={this.next}>
                         Next
                       </Button>
                     </Grid.Column>
@@ -83,12 +123,15 @@ class PhotoDisplay extends Component{
                 </Grid>
               </Grid.Column>
               <Grid.Column width={4} textAlign='center'>
-                <Header as='h4'>Low</Header>
-                <Image centered size='small' src={wassen1} />
-                <Header as='h4'>Med</Header>
-                <Image centered size='small' src={wassen4} />
-                <Header as='h4'>High</Header>
-                <Image centered size='small' src={wassen6} />
+                <Header as='h4' className='ref-thumbnail'>Low</Header>
+                <Image centered size='small' className='ref-thumbnail' src={this.state.photoList[1]}
+                       onClick={() => this.showRef(0)} />
+                <Header as='h4' className='ref-thumbnail'>Medium</Header>
+                <Image centered size='small' className='ref-thumbnail' src={this.state.photoList[3]}
+                       onClick={() => this.showRef(1)} />
+                <Header as='h4' className='ref-thumbnail'>High</Header>
+                <Image centered size='small' className='ref-thumbnail' src={this.state.photoList[5]}
+                       onClick={() => this.showRef(2)} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
