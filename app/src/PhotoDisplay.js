@@ -8,11 +8,14 @@ import wassen3 from './assets/images/Wassenphoto_2021-10-26_13-36-00.jpeg';
 import wassen4 from './assets/images/Wassenphoto_2021-10-26_14-36-00.jpeg';
 import wassen5 from './assets/images/Wassenphoto_2021-10-26_15-36-00.jpeg';
 import wassen6 from './assets/images/Wassenphoto_2021-10-26_16-36-00.jpeg';
+import refhigh from './assets/images/high.jpeg';
+import refmed  from './assets/images/med.jpeg';
+import reflow  from './assets/images/low.jpeg';
 
 const refIndexMap = {
-  0: 'Low',
+  0: 'High',
   1: 'Medium',
-  2: 'High'
+  2: 'Low'
 }
 
 class PhotoDisplay extends Component{
@@ -36,7 +39,7 @@ class PhotoDisplay extends Component{
   componentDidMount() {
     this.setState({
       photoList: [wassen, wassen1, wassen2, wassen3, wassen4, wassen5, wassen6],
-      refPhotoList: [wassen, wassen2, wassen5]
+      refPhotoList: [refhigh, refmed, reflow]
     });
   }
 
@@ -123,14 +126,14 @@ class PhotoDisplay extends Component{
                 </Grid>
               </Grid.Column>
               <Grid.Column width={4} textAlign='center'>
-                <Header as='h4' className='ref-thumbnail'>Low</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.photoList[1]}
+                <Header as='h4' className='ref-thumbnail'>High</Header>
+                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[0]}
                        onClick={() => this.showRef(0)} />
                 <Header as='h4' className='ref-thumbnail'>Medium</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.photoList[3]}
+                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[1]}
                        onClick={() => this.showRef(1)} />
-                <Header as='h4' className='ref-thumbnail'>High</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.photoList[5]}
+                <Header as='h4' className='ref-thumbnail'>Low</Header>
+                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[2]}
                        onClick={() => this.showRef(2)} />
               </Grid.Column>
             </Grid.Row>
