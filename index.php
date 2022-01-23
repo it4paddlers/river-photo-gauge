@@ -121,7 +121,9 @@ $oldestRequested_date = date('Y-m-d\TH:i', $oldestRequested_ts);
   <body>
     <h1>Waterlevel- Webcam Wassen</h1>
     <p> Location: Takeout of the <a href="https://rivermap.org/map/#sprache=de&styled=1&zoom=14&lat=46.69075&lng=8.60010&inf=113">Göschenen-Wassen</a> Section.</p>
-    <p>We are working on finding the best way how to present these pictures... This is just the bare minimum. A better(?) slideshow-style presentation is <a href="hs-index2.php">here</a>, but it might be broken, as it is work in progress.</p>
+    <p>This is quite a bare minimum way to present the images. <br>
+A better(?) slideshow-style presentation is <a href="hs-index2.php">here</a>, but it might be broken, as it is work in progress.<br>
+A prototype for a better User Interface (with dummy content only) is <a href="app/build/">here</a>. All Code is on <a href="https://github.com/it4paddlers/river-photo-gauge">GitHub</a>.</p>
     <h2>Calibration</h2>
       <h3>Data missing, we need your help!</h3>
     <p>We need info about what pictures show <strong>low/med/high</strong>. So if you have an opinion about the flow you see in the Pictures, please <a href="mailto:toro@kanuschle.ch">tell us</a>.<br>
