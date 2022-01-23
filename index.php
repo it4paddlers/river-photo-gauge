@@ -127,10 +127,10 @@ $oldestRequested_date = date('Y-m-d\TH:i', $oldestRequested_ts);
     <p>We need info about what pictures show <strong>low/med/high</strong>. So if you have an opinion about the flow you see in the Pictures, please <a href="mailto:toro@kanuschle.ch">tell us</a>.<br>
     Or, tell us when you paddled there and how you experienced that level. <br>
     Wishes, advice, contributions welcome too ;-) </p>
-    <p>We think <a href="calibration_images/daymax-Wassenphoto_2021-07-12_20-24-51.jpg">this is somewhere in the medium range</a>. Do you agree? And what about low and high?</p>
+    <p>We think <a href="calibration_images/daymax-Wassenphoto_2021-07-12_20-24-51.jpg">this is somewhere in the medium range</a>. Do you agree? And what about low and high?<br>
+<a href="index.php?oldest=2021-07-13T06%3A20&newest=2021-07-14T06%3A30">July 13<sup>th</sup> 2021</a> is a good reference of flood-stage ;-)</p>
     <h2>Date Range</h2>
     <p>Images Available from <strong><?=date("M. d. Y",$oldestFile_ts)?></strong> to <strong><?=date("M. d. Y",$newestFile_ts)?></strong></p>
-    <div style="border:1px solid red">Internet in Wassen is broken since oct. 26th till maybe mid. nov. 2021.</div><br><br>
     <form action="<?=$_SERVER['PHP_SELF']?>" method="get">
       <fieldset>
         <legend>Select Range</legend>
