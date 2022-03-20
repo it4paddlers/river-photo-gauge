@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './assets/styles/PhotoDisplay.css';
-import {Button, Container, Grid, Header, Icon, Image, Segment} from 'semantic-ui-react';
+import {Button, Container, Grid, Header, Icon, Image, Input, Segment} from 'semantic-ui-react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import wassen from './assets/images/Wassenphoto_2021-10-26_10-36-00.jpeg';
 import wassen1 from './assets/images/Wassenphoto_2021-10-26_11-36-00.jpeg';
 import wassen2 from './assets/images/Wassenphoto_2021-10-26_12-36-00.jpeg';
@@ -76,6 +78,10 @@ class PhotoDisplay extends Component{
     return date + ', ' + timeFormatted;
   }
 
+  setStartDate() {
+
+  }
+
   render() {
     let dateTime;
     let photoShown;
@@ -92,7 +98,38 @@ class PhotoDisplay extends Component{
     return (
       <React.Fragment>
         <Segment basic as={Container}>
+        {/* <Grid.Column computer={6} tablet={8} mobile={16} textAlign='center'>
+                      <DatePicker
+                        showTimeSelect
+                        className='calendar'
+                        selected={this.state.startWindow} 
+                        onChange={date => this.setWindow(date, 'start')} 
+                        customInput={<Input label='start' icon='calendar' />}
+                        dateFormat="d/MM/yyyy, HH:mm"
+                      />
+                    </Grid.Column> */}
+          <DatePicker
+              selected={new Date('01-01-2022')}
+              onChange={(date) => this.setStartDate(date)}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              timeCaption="Time"
+              dateFormat="h:mm aa"
+          />
           <Grid stackable>
+            <Grid.Row>
+              <Grid.Column computer={6} tablet={8} mobile={16} textAlign='center'>
+                <DatePicker
+                  showTimeSelect
+                  className='calendar'
+                  selected={this.state.startWindow} 
+                  onChange={date => this.setWindow(date, 'start')} 
+                  customInput={<Input label='start' icon='calendar' />}
+                  dateFormat="d/MM/yyyy, HH:mm"
+                />
+              </Grid.Column>
+            </Grid.Row>
             <Grid.Row>
               <Grid.Column width={12}>
                 <Grid>
