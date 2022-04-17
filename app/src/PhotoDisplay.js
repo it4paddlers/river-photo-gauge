@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './assets/styles/PhotoDisplay.css';
-import {Button, Container, Grid, Header, Icon, Image, Segment} from 'semantic-ui-react';
+import {Button, Grid, Header, Icon, Image, Segment} from 'semantic-ui-react';
 import wassen from './assets/images/Wassenphoto_2021-10-26_10-36-00.jpeg';
 import wassen1 from './assets/images/Wassenphoto_2021-10-26_11-36-00.jpeg';
 import wassen2 from './assets/images/Wassenphoto_2021-10-26_12-36-00.jpeg';
@@ -94,47 +94,47 @@ class PhotoDisplay extends Component{
 
     return (
       <React.Fragment>
-        <Segment basic as={Container}>
-          <Grid stackable>
-            <Grid.Row>
-              <Grid.Column width={12}>
-                <Grid>
-                  <Grid.Row>
-                    <Grid.Column textAlign='center'>
-                      <Header as='h4'>
-                        {this.state.refPhotoShown ?
-                            <Icon link name='close' className='close-ref' onClick={this.hideRefPhoto}/> :
-                            null
-                        }
-                        {dateTime}
-                      </Header>
-                      <Image centered size='large' src={photoShown} />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column width={8} textAlign='right'>
-                      <Button size='small' onClick={this.previous}>
-                        Previous
-                      </Button>
-                    </Grid.Column>
-                    <Grid.Column width={8} textAlign='left'>
-                      <Button size='small' onClick={this.next}>
-                        Next
-                      </Button>
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
+        <Segment basic>
+          <Grid>
+          <Grid.Row>
+              <Grid.Column width={8} textAlign='right'>
+                <Button size='small' onClick={this.previous}>
+                  Previous
+                </Button>
               </Grid.Column>
-              <Grid.Column width={4} textAlign='center'>
-                <Header as='h4' className='ref-thumbnail'>High</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[0]}
-                       onClick={() => this.showRef(0)} />
-                <Header as='h4' className='ref-thumbnail'>Medium</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[1]}
-                       onClick={() => this.showRef(1)} />
+              <Grid.Column width={8} textAlign='left'>
+                <Button size='small' onClick={this.next}>
+                  &nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column textAlign='center'>
+                <Header as='h4'>
+                  {this.state.refPhotoShown ?
+                    <Icon link name='close' className='close-ref' onClick={this.hideRefPhoto}/> :
+                    null
+                  }
+                  {dateTime}
+                </Header>
+                <Image centered size='massive' src={photoShown} />
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row centered>
+              <Grid.Column width={5} textAlign='center'>
                 <Header as='h4' className='ref-thumbnail'>Low</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[2]}
-                       onClick={() => this.showRef(2)} />
+                <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[2]}
+                  onMouseEnter={() => this.showRef(2)} onMouseLeave={() => this.hideRefPhoto()} />
+              </Grid.Column>
+              <Grid.Column width={5} textAlign='center'>
+                <Header as='h4' className='ref-thumbnail'>Medium</Header>
+                <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[1]}
+                  onMouseEnter={() => this.showRef(1)} onMouseLeave={() => this.hideRefPhoto()} />
+              </Grid.Column>
+              <Grid.Column width={5} textAlign='center'>
+                <Header as='h4' className='ref-thumbnail'>High</Header>
+                <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[0]}
+                  onMouseEnter={() => this.showRef(0)} onMouseLeave={() => this.hideRefPhoto()} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
