@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './assets/styles/PhotoDisplay.css';
-import {Button, Grid, Header, Icon, Image, Segment} from 'semantic-ui-react';
+import {Button, Grid, Header, Image, Segment} from 'semantic-ui-react';
 import wassen from './assets/images/Wassenphoto_2021-10-26_10-36-00.jpeg';
 import wassen1 from './assets/images/Wassenphoto_2021-10-26_11-36-00.jpeg';
 import wassen2 from './assets/images/Wassenphoto_2021-10-26_12-36-00.jpeg';
@@ -76,6 +76,7 @@ class PhotoDisplay extends Component{
     const filename = photoUrl.split(/[/]/).pop();
     const [date, time] = filename.split(/[_.]+/).slice(1, 3);
     const timeFormatted = time.split(/[-]/).join(':');
+    console.log(date);
     return date + ', ' + timeFormatted;
   }
 
@@ -111,10 +112,6 @@ class PhotoDisplay extends Component{
             <Grid.Row>
               <Grid.Column textAlign='center'>
                 <Header as='h4'>
-                  {this.state.refPhotoShown ?
-                    <Icon link name='close' className='close-ref' onClick={this.hideRefPhoto}/> :
-                    null
-                  }
                   {dateTime}
                 </Header>
                 <Image centered size='massive' src={photoShown} />
