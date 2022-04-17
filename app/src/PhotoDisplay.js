@@ -75,9 +75,13 @@ class PhotoDisplay extends Component{
   getPhotoDateTime(photoUrl) {
     const filename = photoUrl.split(/[/]/).pop();
     const [date, time] = filename.split(/[_.]+/).slice(1, 3);
-    const timeFormatted = time.split(/[-]/).join(':');
-    console.log(date);
-    return date + ', ' + timeFormatted;
+    const timeWithColons = time.split(/[-]/).join(':');
+    const jsDate = new Date(date + ' ' + timeWithColons);
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const dateFormatted = jsDate.toLocaleDateString('en-GB', options);
+    const timeFormatted = jsDate.toLocaleTimeString('en-GB');
+    console.log(jsDate.toLocaleTimeString('en-GB'));
+    return timeFormatted + ' - ' + dateFormatted;
   }
 
   render() {
