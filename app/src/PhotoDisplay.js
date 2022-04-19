@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './assets/styles/PhotoDisplay.css';
-import {Button, Container, Grid, Header, Icon, Image, Segment} from 'semantic-ui-react';
+import {Button, Grid, Header, Image, Segment} from 'semantic-ui-react';
 import wassen from './assets/images/Wassenphoto_2021-10-26_10-36-00.jpeg';
 import wassen1 from './assets/images/Wassenphoto_2021-10-26_11-36-00.jpeg';
 import wassen2 from './assets/images/Wassenphoto_2021-10-26_12-36-00.jpeg';
@@ -75,8 +75,13 @@ class PhotoDisplay extends Component{
   getPhotoDateTime(photoUrl) {
     const filename = photoUrl.split(/[/]/).pop();
     const [date, time] = filename.split(/[_.]+/).slice(1, 3);
-    const timeFormatted = time.split(/[-]/).join(':');
-    return date + ', ' + timeFormatted;
+    const timeWithColons = time.split(/[-]/).join(':');
+    const jsDate = new Date(date + ' ' + timeWithColons);
+    const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const dateFormatted = jsDate.toLocaleDateString('en-GB', options);
+    const timeFormatted = jsDate.toLocaleTimeString('en-GB');
+    const timeWithoutSecs = timeFormatted.split(':').slice(0,2).join(':');
+    return timeWithoutSecs + ' - ' + dateFormatted;
   }
 
   render() {
@@ -94,47 +99,72 @@ class PhotoDisplay extends Component{
 
     return (
       <React.Fragment>
-        <Segment basic as={Container}>
-          <Grid stackable>
+        <Segment basic>
+          <Grid>
             <Grid.Row>
-              <Grid.Column width={12}>
-                <Grid>
-                  <Grid.Row>
-                    <Grid.Column textAlign='center'>
-                      <Header as='h4'>
-                        {this.state.refPhotoShown ?
-                            <Icon link name='close' className='close-ref' onClick={this.hideRefPhoto}/> :
-                            null
-                        }
-                        {dateTime}
-                      </Header>
-                      <Image centered size='large' src={photoShown} />
-                    </Grid.Column>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column width={8} textAlign='right'>
-                      <Button size='small' onClick={this.previous}>
-                        Previous
-                      </Button>
-                    </Grid.Column>
-                    <Grid.Column width={8} textAlign='left'>
-                      <Button size='small' onClick={this.next}>
-                        Next
-                      </Button>
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
+              <Grid.Column width={8} textAlign='right'>
+                <Button size='small' onClick={this.previous}>
+                  Previous
+                </Button>
               </Grid.Column>
-              <Grid.Column width={4} textAlign='center'>
-                <Header as='h4' className='ref-thumbnail'>High</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[0]}
-                       onClick={() => this.showRef(0)} />
-                <Header as='h4' className='ref-thumbnail'>Medium</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[1]}
-                       onClick={() => this.showRef(1)} />
+              <Grid.Column width={8} textAlign='left'>
+                <Button size='small' onClick={this.next}>
+                  &nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+
+            {/* Tablet and computer display */}
+            <Grid.Row only='tablet computer'>
+              <Grid.Column textAlign='center' width={12}>
+                <Header as='h4'>
+                  {dateTime}
+                </Header>
+                <Image centered size='massive' src={photoShown} />
+              </Grid.Column>
+              <Grid.Column textAlign='center' width={4}>
+                <Grid.Row>
+                  <Header as='h4' className='ref-thumbnail'>Low</Header>
+                  <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[2]}
+                    onMouseEnter={() => this.showRef(2)} onMouseLeave={() => this.hideRefPhoto()} />
+                </Grid.Row>
+                <Grid.Row>
+                  <Header as='h4' className='ref-thumbnail'>Medium</Header>
+                  <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[1]}
+                    onMouseEnter={() => this.showRef(1)} onMouseLeave={() => this.hideRefPhoto()} />
+                </Grid.Row>
+                <Grid.Row>
+                  <Header as='h4' className='ref-thumbnail'>High</Header>
+                  <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[0]}
+                    onMouseEnter={() => this.showRef(0)} onMouseLeave={() => this.hideRefPhoto()} />
+                </Grid.Row>
+              </Grid.Column>
+            </Grid.Row>
+
+            {/* Mobile display */}
+            <Grid.Row only='mobile'>
+              <Grid.Column textAlign='center'>
+                <Header as='h4'>
+                  {dateTime}
+                </Header>
+                <Image centered size='massive' src={photoShown} />
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row centered only='mobile'>
+              <Grid.Column width={5} textAlign='center'>
                 <Header as='h4' className='ref-thumbnail'>Low</Header>
-                <Image centered size='small' className='ref-thumbnail' src={this.state.refPhotoList[2]}
-                       onClick={() => this.showRef(2)} />
+                <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[2]}
+                  onTouchStart={() => this.showRef(2)} onTouchEnd={() => this.hideRefPhoto()} />
+              </Grid.Column>
+              <Grid.Column width={5} textAlign='center'>
+                <Header as='h4' className='ref-thumbnail'>Medium</Header>
+                <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[1]}
+                  onTouchStart={() => this.showRef(1)} onTouchEnd={() => this.hideRefPhoto()} />
+              </Grid.Column>
+              <Grid.Column width={5} textAlign='center'>
+                <Header as='h4' className='ref-thumbnail'>High</Header>
+                <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[0]}
+                  onTouchStart={() => this.showRef(0)} onTouchEnd={() => this.hideRefPhoto()} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
