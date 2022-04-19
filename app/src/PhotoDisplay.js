@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './assets/styles/PhotoDisplay.css';
-import {Button, Grid, Header, Image, Segment} from 'semantic-ui-react';
+import {Button, Divider, Grid, Header, Image, Segment} from 'semantic-ui-react';
 import wassen from './assets/images/Wassenphoto_2021-10-26_10-36-00.jpeg';
 import wassen1 from './assets/images/Wassenphoto_2021-10-26_11-36-00.jpeg';
 import wassen2 from './assets/images/Wassenphoto_2021-10-26_12-36-00.jpeg';
@@ -101,20 +101,19 @@ class PhotoDisplay extends Component{
       <React.Fragment>
         <Segment basic>
           <Grid>
-            <Grid.Row>
-              <Grid.Column width={8} textAlign='right'>
+            {/* Tablet and computer display */}
+            <Grid.Row only='tablet computer'>
+              <Grid.Column width={6} textAlign='right'>
                 <Button size='small' onClick={this.previous}>
                   Previous
                 </Button>
               </Grid.Column>
-              <Grid.Column width={8} textAlign='left'>
+              <Grid.Column width={6} textAlign='left'>
                 <Button size='small' onClick={this.next}>
                   &nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;
                 </Button>
               </Grid.Column>
             </Grid.Row>
-
-            {/* Tablet and computer display */}
             <Grid.Row only='tablet computer'>
               <Grid.Column textAlign='center' width={12}>
                 <Header as='h4'>
@@ -127,11 +126,13 @@ class PhotoDisplay extends Component{
                   <Header as='h4' className='ref-thumbnail'>Low</Header>
                   <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[2]}
                     onMouseEnter={() => this.showRef(2)} onMouseLeave={() => this.hideRefPhoto()} />
+                  <br />
                 </Grid.Row>
                 <Grid.Row>
                   <Header as='h4' className='ref-thumbnail'>Medium</Header>
                   <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[1]}
                     onMouseEnter={() => this.showRef(1)} onMouseLeave={() => this.hideRefPhoto()} />
+                  <br />
                 </Grid.Row>
                 <Grid.Row>
                   <Header as='h4' className='ref-thumbnail'>High</Header>
@@ -142,6 +143,18 @@ class PhotoDisplay extends Component{
             </Grid.Row>
 
             {/* Mobile display */}
+            <Grid.Row only='mobile'>
+              <Grid.Column width={8} textAlign='right'>
+                <Button size='small' onClick={this.previous}>
+                  Previous
+                </Button>
+              </Grid.Column>
+              <Grid.Column width={8} textAlign='left'>
+                <Button size='small' onClick={this.next}>
+                  &nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
             <Grid.Row only='mobile'>
               <Grid.Column textAlign='center'>
                 <Header as='h4'>
