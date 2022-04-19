@@ -80,7 +80,8 @@ class PhotoDisplay extends Component{
     const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
     const dateFormatted = jsDate.toLocaleDateString('en-GB', options);
     const timeFormatted = jsDate.toLocaleTimeString('en-GB');
-    return timeFormatted + ' - ' + dateFormatted;
+    const timeWithoutSecs = timeFormatted.split(':').slice(0,2).join(':');
+    return timeWithoutSecs + ' - ' + dateFormatted;
   }
 
   render() {
