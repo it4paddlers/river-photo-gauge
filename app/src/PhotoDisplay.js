@@ -101,7 +101,7 @@ class PhotoDisplay extends Component{
       <React.Fragment>
         <Segment basic>
           <Grid>
-          <Grid.Row>
+            <Grid.Row>
               <Grid.Column width={8} textAlign='right'>
                 <Button size='small' onClick={this.previous}>
                   Previous
@@ -113,7 +113,36 @@ class PhotoDisplay extends Component{
                 </Button>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
+
+            {/* Tablet and computer display */}
+            <Grid.Row only='tablet computer'>
+              <Grid.Column textAlign='center' width={12}>
+                <Header as='h4'>
+                  {dateTime}
+                </Header>
+                <Image centered size='massive' src={photoShown} />
+              </Grid.Column>
+              <Grid.Column textAlign='center' width={4}>
+                <Grid.Row>
+                  <Header as='h4' className='ref-thumbnail'>Low</Header>
+                  <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[2]}
+                    onMouseEnter={() => this.showRef(2)} onMouseLeave={() => this.hideRefPhoto()} />
+                </Grid.Row>
+                <Grid.Row>
+                  <Header as='h4' className='ref-thumbnail'>Medium</Header>
+                  <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[1]}
+                    onMouseEnter={() => this.showRef(1)} onMouseLeave={() => this.hideRefPhoto()} />
+                </Grid.Row>
+                <Grid.Row>
+                  <Header as='h4' className='ref-thumbnail'>High</Header>
+                  <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[0]}
+                    onMouseEnter={() => this.showRef(0)} onMouseLeave={() => this.hideRefPhoto()} />
+                </Grid.Row>
+              </Grid.Column>
+            </Grid.Row>
+
+            {/* Mobile display */}
+            <Grid.Row only='mobile'>
               <Grid.Column textAlign='center'>
                 <Header as='h4'>
                   {dateTime}
@@ -121,7 +150,7 @@ class PhotoDisplay extends Component{
                 <Image centered size='massive' src={photoShown} />
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row centered>
+            <Grid.Row centered only='mobile'>
               <Grid.Column width={5} textAlign='center'>
                 <Header as='h4' className='ref-thumbnail'>Low</Header>
                 <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[2]}
