@@ -154,17 +154,17 @@ class PhotoDisplay extends Component{
               <Grid.Column width={5} textAlign='center'>
                 <Header as='h4' className='ref-thumbnail'>Low</Header>
                 <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[2]}
-                  onMouseEnter={() => this.showRef(2)} onMouseLeave={() => this.hideRefPhoto()} />
+                  onTouchStart={() => this.showRef(2)} onTouchEnd={() => this.hideRefPhoto()} />
               </Grid.Column>
               <Grid.Column width={5} textAlign='center'>
                 <Header as='h4' className='ref-thumbnail'>Medium</Header>
                 <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[1]}
-                  onMouseEnter={() => this.showRef(1)} onMouseLeave={() => this.hideRefPhoto()} />
+                  onTouchStart={() => this.showRef(1)} onTouchEnd={() => this.hideRefPhoto()} />
               </Grid.Column>
               <Grid.Column width={5} textAlign='center'>
                 <Header as='h4' className='ref-thumbnail'>High</Header>
                 <Image centered fluid className='ref-thumbnail' src={this.state.refPhotoList[0]}
-                  onMouseEnter={() => this.showRef(0)} onMouseLeave={() => this.hideRefPhoto()} />
+                  onTouchStart={() => this.showRef(0)} onTouchEnd={() => this.hideRefPhoto()} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
