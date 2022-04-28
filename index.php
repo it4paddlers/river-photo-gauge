@@ -1,7 +1,7 @@
 <?php
 // The directory where this file resides is meant to contain a fixed number of webcam pics which get overwritten in rotating order, as new images are uploaded every hour.
 
-// The intent of this file is to return a html page that shows all images in the current directory, along with photo-timestamps.
+// The intent of this file is to return either a json of images and timestamps or a html page that shows all images in the current directory, along with photo-timestamps.
 
 
 // Report all PHP errors
@@ -78,6 +78,14 @@ foreach($orderedFiles as $date => $name){
 $newestRequested_date = date('Y-m-d\TH:i', $newestRequested_ts);
 $oldestRequested_date = date('Y-m-d\TH:i', $oldestRequested_ts);
 
+
+
+// if requested, output json instead of html
+
+if(isset($_GET['json'])){
+  echo json_encode($orderedFiles)."\n";
+  die;
+}
 
 
 
