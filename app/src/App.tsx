@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import useMount from "react-use/lib/useMount";
-import DateFilter from "./DateFilter";
+import Filters from "./Filters";
 import Info from "./Info";
 import NavButtons from "./NavButtons";
 import Photos from "./Photos";
 import { useStore } from "./store";
-import TimeFilter from "./TimeFilter";
 
 const App: FC = () => {
   const init = useStore((s) => s.init);
@@ -19,12 +18,7 @@ const App: FC = () => {
         </div>
 
         <div className="bg-white p-4 rounded-lg">
-          <div>
-            <DateFilter />
-          </div>
-          <div>
-            <TimeFilter />
-          </div>
+          <Filters />
         </div>
 
         <div className="bg-white p-4 rounded-lg">
