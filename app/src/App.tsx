@@ -1,20 +1,15 @@
 import React, { FC } from "react";
-import Info from "./Info";
-import Photos from "./Photos";
 import useMount from "react-use/lib/useMount";
-import { useStore } from "./store";
-import sub from "date-fns/sub";
-import NavButtons from "./NavButtons";
 import DateFilter from "./DateFilter";
+import Info from "./Info";
+import NavButtons from "./NavButtons";
+import Photos from "./Photos";
+import { useStore } from "./store";
+import TimeFilter from "./TimeFilter";
 
 const App: FC = () => {
-  const setDateRange = useStore((s) => s.setDateRange);
-
-  // Init range
-  useMount(() => {
-    const now = new Date();
-    setDateRange(sub(now, { days: 3 }), now);
-  });
+  const init = useStore((s) => s.init);
+  useMount(init);
 
   return (
     <>
@@ -26,6 +21,9 @@ const App: FC = () => {
         <div className="bg-white p-4 rounded-lg">
           <div>
             <DateFilter />
+          </div>
+          <div>
+            <TimeFilter />
           </div>
         </div>
 

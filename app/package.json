@@ -28,6 +28,7 @@
     "react-compare-slider": "^2.2.0",
     "react-datepicker": "^4.7.0",
     "react-dom": "^18.1.0",
+    "react-range": "^1.8.12",
     "react-use": "^17.3.2",
     "zustand": "^4.0.0-rc.1"
   },
@@ -50,7 +51,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "lint-staged": "^11.2.6",

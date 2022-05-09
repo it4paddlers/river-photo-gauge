@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import DatePicker from "./DatePicker";
+import DatePicker from "./components/date-picker";
 import { useStore } from "./store";
 
 const DateFilter: FC = () => {

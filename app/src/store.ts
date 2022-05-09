@@ -1,93 +1,102 @@
-import create from "zustand";
-import { Photo, Raw } from "./types";
-import low from "./assets/low.jpeg";
-import medium from "./assets/medium.jpeg";
-import high from "./assets/high.jpeg";
-import format from "date-fns/format";
-import setTime from "date-fns/set";
-
-import test from "./test.json";
 import sub from "date-fns/sub";
+import { useMemo } from "react";
+import create from "zustand";
+import { fetchReferences, fetchPhotos } from "./api";
+import { Photo } from "./types";
 
 export interface State {
   fromDate: Date;
   toDate: Date;
-  fromHour: number;
-  toHour: number;
 
-  loading: boolean;
+  // Within each day only photos in this hour rannge will be displayed
+  timeRange: [fromHour: number, toHour: number];
+
   photos: Photo[];
+  photosLoading: boolean;
   selectedPhotoIndex: number;
 
   references: string[];
+  referencesLoading: boolean;
   selelectedReferenceIndex: number;
 }
 
 export interface Actions {
-  setDateRange: (from: Date, to: Date) => void;
+  setDateRange: (from: Date, to: Date) => Promise<void>;
+  setTimeRange: (range: [number, number]) => void;
   selectPhoto: (index: number) => void;
   selectReference: (index: number) => void;
+  init: () => Promise<void>;
 }
 
-export const useStore = create<State & Actions>((set) => ({
-  fromDate: new Date(),
-  toDate: sub(new Date(), { days: 3 }),
-  fromHour: 0,
-  toHour: 24,
+export const useStore = create<State & Actions>((set, get) => ({
+  fromDate: sub(new Date(), { days: 3 }),
+  toDate: new Date(),
+  timeRange: [0, 24],
 
-  loading: false,
   photos: [],
+  photosLoading: false,
   selectedPhotoIndex: 0,
 
-  references: [low, medium, high],
+  references: [],
+  referencesLoading: false,
   selelectedReferenceIndex: 0,
 
   selectPhoto: (index) => set({ selectedPhotoIndex: index }),
 
   selectReference: (index) => set({ selelectedReferenceIndex: index }),
-  setDateRange: async (from, to) => {
-    const fromDate = setTime(from, { hours: 0, minutes: 0, seconds: 0 });
-    const toDate = setTime(to, { hours: 23, minutes: 59, seconds: 0 });
-    const url = new URL(
-      "https://it4paddlers.org/webcams/wassen/index.php?json"
-    );
-    url.searchParams.append("oldest", format(fromDate, "yyyy-MM-dd'T'HH:mm"));
-    url.searchParams.append("newest", format(toDate, "yyyy-MM-dd'T'HH:mm"));
 
-    set({ loading: true, fromDate, toDate });
+  setDateRange: async (from, to) => {
     try {
-      const resp = await fetch(url.href);
-      const data: Raw = await resp.json();
-      set({
-        photos: Object.entries(data).map(([ts, filename]) => ({
-          date: new Date(Number(ts)),
-          url: "https://it4paddlers.org/webcams/wassen/" + filename,
-        })),
-        selectedPhotoIndex: 0,
-      });
-      // set({
-      //   photos: Object.entries(test).map(([ts, filename]) => ({
-      //     date: new Date(Number(ts)),
-      //     url: "https://it4paddlers.org/webcams/wassen/" + filename,
-      //   })),
-      //   selectedPhotoIndex: 0,
-      // });
+      set({ photosLoading: true });
+      const photos = await fetchPhotos(from, to);
+      set({ photos, selectedPhotoIndex: 0 });
     } catch (e) {
       console.error("failed to fetch photos", e);
     } finally {
-      set({ loading: false });
+      set({ photosLoading: false });
+    }
+  },
+
+  setTimeRange: (timeRange) => {
+    set({ timeRange, selectedPhotoIndex: 0 });
+  },
+
+  init: async () => {
+    const { fromDate, toDate } = get();
+    try {
+      set({ photosLoading: true, referencesLoading: true });
+      const [photos, references] = await Promise.all([
+        fetchPhotos(fromDate, toDate),
+        fetchReferences(),
+      ]);
+      set({ photos, selectedPhotoIndex: 0, references });
+    } catch (e) {
+      console.error("failed to fetch photos", e);
+    } finally {
+      set({ photosLoading: false, referencesLoading: false });
     }
   },
 }));
 
-export function useCurrentPhoto(): Photo | undefined {
+export function useFilteredPhotos(): Photo[] {
   const photos = useStore((state) => state.photos);
+  const [fromHour, toHour] = useStore((state) => state.timeRange);
+  return useMemo(() => {
+    return photos.filter((p) => {
+      const h = p.date.getHours();
+      return h >= fromHour && h <= toHour;
+    });
+  }, [photos, fromHour, toHour]);
+}
+
+export function useCurrentPhoto(): Photo | undefined {
+  const photos = useFilteredPhotos();
   const selectedPhotoIndex = useStore((state) => state.selectedPhotoIndex);
   return photos[selectedPhotoIndex];
 }
 
 export function useNextPhoto() {
-  const photos = useStore((state) => state.photos);
+  const photos = useFilteredPhotos();
   const selectedPhotoIndex = useStore((state) => state.selectedPhotoIndex);
   const selectPhoto = useStore((state) => state.selectPhoto);
 

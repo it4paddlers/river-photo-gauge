@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { ReactCompareSlider } from "react-compare-slider";
-import Spinner from "./Spinner";
+import Spinner from "./components/spinner";
 import { useCurrentPhoto, useReferencePhoto, useStore } from "./store";
 
 const MainPhoto: FC = () => {
-  const loading = useStore((s) => s.loading);
+  const loading = useStore((s) => s.photosLoading);
   const photo = useCurrentPhoto();
   const reference = useReferencePhoto();
 

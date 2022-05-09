@@ -3,28 +3,9 @@ import Picker, { ReactDatePickerProps } from "react-datepicker";
 import format from "date-fns/format";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import DateButtonInput from "./DateButtonInput";
-import clsx from "clsx";
+import Chevron from "./Chevron";
 
-interface ChevronProps {
-  onClick?: () => void;
-  disabled?: boolean;
-}
-
-const Chevron: FC<ChevronProps> = ({ onClick, disabled, children }) => (
-  <button
-    onClick={onClick}
-    disabled={disabled}
-    type="button"
-    className={clsx([
-      "inline-flex p-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500",
-      { "cursor-not-allowed opacity-50": disabled },
-    ])}
-  >
-    {children}
-  </button>
-);
-
-const DatePicker: FC<ReactDatePickerProps> = (props) => {
+export const DatePicker: FC<ReactDatePickerProps> = (props) => {
   return (
     <Picker
       {...props}
@@ -56,5 +37,3 @@ const DatePicker: FC<ReactDatePickerProps> = (props) => {
     />
   );
 };
-
-export default DatePicker;

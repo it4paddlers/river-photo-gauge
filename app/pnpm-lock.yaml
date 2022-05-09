@@ -23,7 +23,6 @@ specifiers:
   eslint-plugin-react: ^7.29.4
   eslint-plugin-react-hooks: ^4.5.0
   flowbite: ^1.4.5
-  husky: ^7.0.4
   identity-obj-proxy: ^3.0.0
   jest: ^27.5.1
   lint-staged: ^11.2.6
@@ -34,6 +33,7 @@ specifiers:
   react-compare-slider: ^2.2.0
   react-datepicker: ^4.7.0
   react-dom: ^18.1.0
+  react-range: ^1.8.12
   react-use: ^17.3.2
   tailwindcss: ^3.0.24
   ts-jest: ^27.1.4
@@ -52,6 +52,7 @@ dependencies:
   react-compare-slider: 2.2.0_react-dom@18.1.0+react@18.1.0
   react-datepicker: 4.7.0_react-dom@18.1.0+react@18.1.0
   react-dom: 18.1.0_react@18.1.0
+  react-range: 1.8.12_react-dom@18.1.0+react@18.1.0
   react-use: 17.3.2_react-dom@18.1.0+react@18.1.0
   zustand: 4.0.0-rc.1_react@18.1.0
 
@@ -74,7 +75,6 @@ devDependencies:
   eslint-plugin-import: 2.26.0_eslint@8.14.0
   eslint-plugin-react: 7.29.4_eslint@8.14.0
   eslint-plugin-react-hooks: 4.5.0_eslint@8.14.0
-  husky: 7.0.4
   identity-obj-proxy: 3.0.0
   jest: 27.5.1
   lint-staged: 11.2.6
@@ -3104,12 +3104,6 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
-  /husky/7.0.4:
-    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
-    engines: {node: '>=12'}
-    hasBin: true
-    dev: true
-
   /hyphenate-style-name/1.0.4:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
     dev: false
@@ -4751,6 +4745,16 @@ packages:
       react-dom: 18.1.0_react@18.1.0
       react-fast-compare: 3.2.0
       warning: 4.0.3
+
+  /react-range/1.8.12_react-dom@18.1.0+react@18.1.0:
+    resolution: {integrity: sha512-vY2eCNDvKlXtEpl8xx5AQVIBeE4ZZ46dLVL+82f4FcS9XrPqz4+XagPHmq3IPqYuVQ2H4b8UArXzvVAsd/B03Q==}
+    peerDependencies:
+      react: ^16.8.0-0 || ^17.0.0-0
+      react-dom: ^16.8.0-0 || ^17.0.0-0
+    dependencies:
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+    dev: false
 
   /react-refresh/0.13.0:
     resolution: {integrity: sha512-XP8A9BT0CpRBD+NYLLeIhld/RqG9+gktUjW1FkE+Vm7OCinbG1SshcK5tb9ls4kzvjZr9mOQc7HYgBngEyPAXg==}

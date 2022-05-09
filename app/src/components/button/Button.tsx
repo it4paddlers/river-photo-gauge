@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import classes from "./Button.module.css";
 
-interface ButtonProps {
+export interface ButtonProps {
   enabled: boolean;
   onPress?: () => void;
 }
 
-const Button: FC<ButtonProps> = ({ enabled, onPress, children }) => {
+export const Button: FC<ButtonProps> = ({ enabled, onPress, children }) => {
   return (
     <button
       disabled={!enabled}
@@ -17,5 +17,3 @@ const Button: FC<ButtonProps> = ({ enabled, onPress, children }) => {
     </button>
   );
 };
-
-export default Button;

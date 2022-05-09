@@ -1,15 +1,14 @@
+import TimeRange from "./components/time-range";
 import React, { FC } from "react";
-import TimeSelector from "./TimeSelector";
+import { useStore } from "./store";
 
-interface TimeFilterProps {}
-
-const TimeFilter: FC<TimeFilterProps> = (props) => {
+const TimeFilter: FC = () => {
+  const timeRange = useStore((s) => s.timeRange);
+  const setTimeRange = useStore((s) => s.setTimeRange);
   return (
     <div className="flex space-x-4 items-center">
       <span>Time range:</span>
-      <TimeSelector />
-      <span>to</span>
-      <TimeSelector />
+      <TimeRange values={timeRange} onChange={setTimeRange} />
     </div>
   );
 };
