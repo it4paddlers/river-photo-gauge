@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ReactCompareSlider } from "react-compare-slider";
+import { OverlayComparator } from "./components/comparator";
 import Spinner from "./components/spinner";
 import { useCurrentPhoto, useReferencePhoto, useStore } from "./store";
 
@@ -17,22 +17,12 @@ const MainPhoto: FC = () => {
   }
 
   return (
-    <ReactCompareSlider
-      className="h-full"
-      itemOne={
-        <img
-          className="absolute top-0 bottom-0 left-0 right-0"
-          src={photo?.url}
-        />
-      }
-      itemTwo={
-        <img
-          className="absolute top-0 bottom-0 left-0 right-0"
-          src={reference}
-        />
-      }
-    />
+    <OverlayComparator className="h-full" top={photo?.url} bottom={reference} />
   );
+
+  // return (
+  //   <SlideComparator className="h-full" top={photo?.url} bottom={reference} />
+  // );
 };
 
 export default MainPhoto;
