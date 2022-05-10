@@ -27,17 +27,14 @@ export const OverlayComparator: FC<ComparatorProps> = ({
     document.addEventListener('mouseup', show);
   }, [toggleHidden]);
 
-  // console.log(
-  //   clsx('absolute inset-0 object-contain', imgClassName, {
-  //     hidden,
-  //   }),
-  // );
-
   return (
     <div
       className={clsx(className, 'relative cursor-pointer')}
       onMouseDown={onPress}
       onContextMenu={ignoreEvent}
+      onTouchStart={toggleHidden}
+      onTouchEnd={toggleHidden}
+      onTouchCancel={toggleHidden}
     >
       <img
         src={bottom}
