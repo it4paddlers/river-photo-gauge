@@ -22,7 +22,7 @@ const MainPhoto: FC = () => {
       className="aspect-4/3 md:aspect-auto md:h-full"
       top={photo?.url}
       bottom={reference}
-      imgClassName="rounded-lg"
+      imgClassName="rounded md:rounded-lg"
     />
   );
 

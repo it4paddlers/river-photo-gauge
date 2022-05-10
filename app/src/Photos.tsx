@@ -15,7 +15,7 @@ const Photos: FC = () => {
     >
       <div
         className={clsx(
-          'rounded-lg',
+          'rounded md:rounded-lg',
           'md:block md:basis-4/5 md:self-stretch md:overflow-y-hidden md:aspect-auto',
           'flex aspect-4/3',
         )}
@@ -36,7 +36,7 @@ const Photos: FC = () => {
   );
   // return (
   //   <div className="flex flex-row">
-  //     <div className="basis-4/5 self-stretch overflow-y-hidden rounded-lg">
+  //     <div className="basis-4/5 self-stretch overflow-y-hidden rounded md:rounded-lg">
   //       <MainPhoto />
   //     </div>
 

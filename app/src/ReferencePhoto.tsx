@@ -15,13 +15,13 @@ const ReferencePhoto: FC<ReferencePhotoProps> = ({ url, selected, index }) => {
   const { t } = useTranslation();
   return (
     <div
-      className="cursor-pointer rounded-lg relative"
+      className="cursor-pointer rounded md:rounded-lg relative"
       onClick={() => selectReference(index)}
     >
       <img
         src={url}
         className={clsx(
-          'rounded-lg',
+          'rounded md:rounded-lg',
           selected && 'ring-offset-2 ring-4 ring-blue-700',
         )}
       />
