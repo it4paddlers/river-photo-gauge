@@ -1,10 +1,12 @@
-import React, { FC, forwardRef } from "react";
-import { getTrackBackground } from "react-range";
-import { ITrackProps } from "react-range/lib/types";
-import { MAX, MIN } from "./constants";
+import React, { forwardRef, ReactNode } from 'react';
+import { getTrackBackground } from 'react-range';
+import { ITrackProps } from 'react-range/lib/types';
+
+import { BLUE_700, MAX, MIN, SLATE_300 } from './constants';
 
 interface TrackProps extends ITrackProps {
   values: [number, number];
+  children?: ReactNode;
 }
 
 const Track = forwardRef<any, TrackProps>(
@@ -13,35 +15,28 @@ const Track = forwardRef<any, TrackProps>(
       <div
         onMouseDown={props.onMouseDown}
         onTouchStart={props.onTouchStart}
-        style={{
-          ...props.style,
-          height: "36px",
-          display: "flex",
-          width: "100%",
-        }}
+        className="flex w-full h-9 m-2"
+        style={props.style}
       >
         <div
           ref={ref}
+          className="h-1 w-full rounded self-center"
           style={{
-            height: "5px",
-            width: "100%",
-            borderRadius: "4px",
             background: getTrackBackground({
               values,
-              colors: ["#ccc", "rgb(29 78 216)", "#ccc"], // blue 700
+              colors: [SLATE_300, BLUE_700, SLATE_300],
               min: MIN,
               max: MAX,
             }),
-            alignSelf: "center",
           }}
         >
           {children}
         </div>
       </div>
     );
-  }
+  },
 );
 
-Track.displayName = "Track";
+Track.displayName = 'Track';
 
 export default Track;

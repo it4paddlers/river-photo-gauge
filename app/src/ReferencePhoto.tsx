@@ -1,5 +1,8 @@
-import React, { FC } from "react";
-import { useStore } from "./store";
+import clsx from 'clsx';
+import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { useStore } from './store';
 
 interface ReferencePhotoProps {
   index: number;
@@ -9,12 +12,24 @@ interface ReferencePhotoProps {
 
 const ReferencePhoto: FC<ReferencePhotoProps> = ({ url, selected, index }) => {
   const selectReference = useStore((s) => s.selectReference);
+  const { t } = useTranslation();
   return (
-    <div className="cursor-pointer" onClick={() => selectReference(index)}>
+    <div
+      className="cursor-pointer rounded-lg relative"
+      onClick={() => selectReference(index)}
+    >
       <img
         src={url}
-        className={selected ? "ring-offset-2 ring-4 ring-blue-700" : undefined}
+        className={clsx(
+          'rounded-lg',
+          selected && 'ring-offset-2 ring-4 ring-blue-700',
+        )}
       />
+      <div className="pointer-events-none absolute bottom-0 inset-x-0 p-2 bg-[rgba(0,0,0,0.3)] rounded-b-lg">
+        <span className="text-white font-medium">
+          {t(`calibration.${index}`)}
+        </span>
+      </div>
     </div>
   );
 };

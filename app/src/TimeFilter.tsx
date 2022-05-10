@@ -1,35 +1,29 @@
-import TimeRange from "./components/time-range";
-import React, { FC } from "react";
-import { useStore } from "./store";
-import padStart from "lodash/padStart";
-import clsx from "clsx";
+import padStart from 'lodash/padStart';
+import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import TimeRange from './components/time-range';
+import { useStore } from './store';
 
 function formatHour(hour: number): string {
-  const padded = padStart(hour + "", 2, "0");
+  const padded = padStart(hour.toString(), 2, '0');
   return `${padded}:00`;
 }
 
-interface TimeFilterProps {
-  rangeWrapperClassName?: string;
-}
-
-const TimeFilter: FC<TimeFilterProps> = ({ rangeWrapperClassName }) => {
+const TimeFilter: FC = () => {
   const timeRange = useStore((s) => s.timeRange);
   const setTimeRange = useStore((s) => s.setTimeRange);
+  const { t } = useTranslation();
   return (
-    <div className="flex space-x-4 items-center">
-      <span className="min-w-max grow-0">Time range:</span>
-      <div
-        className={clsx(
-          "flex flex-col space-y-1 items-center grow",
-          rangeWrapperClassName
-        )}
-      >
+    <div className="grid grid-cols-[100px_1fr]">
+      <div className="flex items-center">{t('timeFilterLabel')}</div>
+      <div className="flex items-center">
         <TimeRange values={timeRange} onChange={setTimeRange} />
-        <span>{`${formatHour(timeRange[0])} - ${formatHour(
-          timeRange[1]
-        )}`}</span>
       </div>
+      <div className="-mt-3" />
+      <div className="flex justify-center -mt-3">{`${formatHour(
+        timeRange[0],
+      )} - ${formatHour(timeRange[1])}`}</div>
     </div>
   );
 };

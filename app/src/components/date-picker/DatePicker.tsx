@@ -1,9 +1,11 @@
-import React, { FC } from "react";
-import Picker, { ReactDatePickerProps } from "react-datepicker";
-import format from "date-fns/format";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
-import DateButtonInput from "./DateButtonInput";
-import Chevron from "./Chevron";
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
+import format from 'date-fns/format';
+import React, { FC } from 'react';
+// eslint-disable-next-line import/named
+import Picker, { ReactDatePickerProps } from 'react-datepicker';
+
+import Chevron from './Chevron';
+import DateButtonInput from './DateButtonInput';
 
 export const DatePicker: FC<ReactDatePickerProps> = (props) => {
   return (
@@ -20,7 +22,7 @@ export const DatePicker: FC<ReactDatePickerProps> = (props) => {
       }) => (
         <div className="flex items-center justify-between px-2 py-2">
           <span className="text-lg text-gray-900">
-            {format(date, "MMMM yyyy")}
+            {format(date, 'MMMM yyyy')}
           </span>
 
           <div className="space-x-2">

@@ -1,5 +1,5 @@
 {
-    "min": ".\/calibration_images\/min.jpg",
-    "med": ".\/calibration_images\/med.jpg",
-    "max": ".\/calibration_images\/max.jpg"
+  "min": "./calibration_images/min.jpg",
+  "med": "./calibration_images/med.jpg",
+  "max": "./calibration_images/max.jpg"
 }

@@ -1,7 +1,8 @@
-import React, { FC } from "react";
-import { OverlayComparator } from "./components/comparator";
-import Spinner from "./components/spinner";
-import { useCurrentPhoto, useReferencePhoto, useStore } from "./store";
+import React, { FC } from 'react';
+
+import { OverlayComparator } from './components/comparator';
+import Spinner from './components/spinner';
+import { useCurrentPhoto, useReferencePhoto, useStore } from './store';
 
 const MainPhoto: FC = () => {
   const loading = useStore((s) => s.photosLoading);

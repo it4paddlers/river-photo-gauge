@@ -1,9 +1,10 @@
-import React, { FC } from "react";
-import { Range } from "react-range";
-import { MAX, MIN, STEP } from "./constants";
-import Mark from "./Mark";
-import Thumb from "./Thumb";
-import Track from "./Track";
+import React, { FC } from 'react';
+import { Range } from 'react-range';
+
+import { MAX, MIN, STEP } from './constants';
+import Mark from './Mark';
+import Thumb from './Thumb';
+import Track from './Track';
 
 export interface TimeRangeProps {
   values: [number, number];

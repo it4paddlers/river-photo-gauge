@@ -1,14 +1,16 @@
-import padStart from "lodash/padStart";
-import format from "date-fns/format";
-import React, { FC } from "react";
-import Button from "./components/button";
+import format from 'date-fns/format';
+import padStart from 'lodash/padStart';
+import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import Button from './components/button';
 import {
+  useCurrentPhoto,
+  useFilteredPhotos,
   useNextPhoto,
   usePrevPhoto,
   useStore,
-  useFilteredPhotos,
-  useCurrentPhoto,
-} from "./store";
+} from './store';
 
 const NavButtons: FC = () => {
   const current = useCurrentPhoto();
@@ -16,23 +18,24 @@ const NavButtons: FC = () => {
   const [hasNext, next] = useNextPhoto();
   const index = useStore((s) => s.selectedPhotoIndex);
   const total = useFilteredPhotos().length;
+  const { t } = useTranslation();
   return (
     <div className="flex flex-row items-center justify-center space-x-4">
       <Button enabled={hasPrev} onPress={prev}>
-        Prev
+        {t('prev')}
       </Button>
-      {!!total && (
+      {!!total && !!current && (
         <div className="flex flex-col justify-center items-center min-w-50">
-          <span className="font-mono">{`${padStart(
-            index + 1 + "",
+          <span>{format(current.date, 'yyyy-MM-dd HH:mm')}</span>
+          <span className="font-mono text-xs text-gray-500">{`${padStart(
+            String(index + 1),
             1 + Math.log10(total),
-            "0"
+            '0',
           )}/${total}`}</span>
-          <span>{format(current.date, "yyyy-MM-dd HH:mm")}</span>
         </div>
       )}
       <Button enabled={hasNext} onPress={next}>
-        Next
+        {t('next')}
       </Button>
     </div>
   );

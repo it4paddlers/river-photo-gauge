@@ -1,2 +1,2 @@
-export { TimeRange as default } from "./TimeRange";
-export type { TimeRangeProps } from "./TimeRange";
+export type { TimeRangeProps } from './TimeRange';
+export { TimeRange as default } from './TimeRange';

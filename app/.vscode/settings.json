@@ -1,0 +1,25 @@
+{
+    "editor.codeActionsOnSave": [
+        "source.fixAll.eslint"
+    ],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "search.exclude": {
+        "**/build": true,
+        "**/dist": true,
+        "**/node_modules": true,
+        "**/*.log": true,
+        "**/pnpm-lock.yaml": true
+    },
+    "typescript.tsdk": "_ROOT/node_modules/typescript/lib",
+    "search.useIgnoreFiles": false,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/*.log": true,
+        "**/build/**": true,
+        "**/dist/**": true,
+        "**/node_modules/*/**": true,
+        "**/pnpm-lock.yaml": true
+    }
+}

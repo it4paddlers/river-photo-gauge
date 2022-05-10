@@ -1,6 +1,7 @@
-import React, { FC } from "react";
-import { ComparatorProps } from "./types";
-import { ReactCompareSlider } from "react-compare-slider";
+import React, { FC } from 'react';
+import { ReactCompareSlider } from 'react-compare-slider';
+
+import { ComparatorProps } from './types';
 
 export const SlideComparator: FC<ComparatorProps> = ({
   top,

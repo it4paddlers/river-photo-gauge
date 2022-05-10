@@ -1,3 +1,3 @@
-export * from "./OverlayComparator";
-export * from "./SlideComparator";
-export * from "./types";
+export * from './OverlayComparator';
+export * from './SlideComparator';
+export * from './types';

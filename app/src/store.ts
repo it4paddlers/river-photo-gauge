@@ -1,8 +1,9 @@
-import sub from "date-fns/sub";
-import { useMemo } from "react";
-import create from "zustand";
-import { fetchReferences, fetchPhotos } from "./api";
-import { Photo } from "./types";
+import sub from 'date-fns/sub';
+import { useMemo } from 'react';
+import create from 'zustand';
+
+import { fetchPhotos, fetchReferences } from './api';
+import { Photo } from './types';
 
 export interface State {
   fromDate: Date;
@@ -51,7 +52,7 @@ export const useStore = create<State & Actions>((set, get) => ({
       const photos = await fetchPhotos(from, to);
       set({ photos, selectedPhotoIndex: 0 });
     } catch (e) {
-      console.error("failed to fetch photos", e);
+      console.error('failed to fetch photos', e);
     } finally {
       set({ photosLoading: false });
     }
@@ -71,7 +72,7 @@ export const useStore = create<State & Actions>((set, get) => ({
       ]);
       set({ photos, selectedPhotoIndex: 0, references });
     } catch (e) {
-      console.error("failed to fetch photos", e);
+      console.error('failed to fetch photos', e);
     } finally {
       set({ photosLoading: false, referencesLoading: false });
     }
@@ -118,7 +119,7 @@ export function usePrevPhoto() {
 
 export function useReferencePhoto() {
   const selelectedReferenceIndex = useStore(
-    (state) => state.selelectedReferenceIndex
+    (state) => state.selelectedReferenceIndex,
   );
   const references = useStore((state) => state.references);
   return references[selelectedReferenceIndex];

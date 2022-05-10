@@ -1,6 +1,7 @@
-import clsx from "clsx";
-import React, { FC, SyntheticEvent, useCallback, useState } from "react";
-import { ComparatorProps } from "./types";
+import clsx from 'clsx';
+import React, { FC, SyntheticEvent, useCallback, useState } from 'react';
+
+import { ComparatorProps } from './types';
 
 function ignoreEvent(event: SyntheticEvent) {
   event.preventDefault();
@@ -19,14 +20,14 @@ export const OverlayComparator: FC<ComparatorProps> = ({
     setHidden(true);
     const show = () => {
       setHidden(false);
-      document.removeEventListener("mouseup", show);
+      document.removeEventListener('mouseup', show);
     };
-    document.addEventListener("mouseup", show);
+    document.addEventListener('mouseup', show);
   }, [setHidden]);
 
   return (
     <div
-      className={clsx(className, "relative cursor-pointer")}
+      className={clsx(className, 'relative cursor-pointer')}
       onMouseDown={onPress}
       onContextMenu={ignoreEvent}
     >
@@ -37,7 +38,7 @@ export const OverlayComparator: FC<ComparatorProps> = ({
       />
       <img
         src={top}
-        className={clsx("absolute inset-0 object-contain", { hidden })}
+        className={clsx('absolute inset-0 object-contain', { hidden })}
         onContextMenu={ignoreEvent}
       />
     </div>

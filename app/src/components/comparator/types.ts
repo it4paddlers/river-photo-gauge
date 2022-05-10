@@ -1,5 +1,5 @@
 export interface ComparatorProps {
   className?: string;
-  top: string;
-  bottom: string;
+  top?: string;
+  bottom?: string;
 }

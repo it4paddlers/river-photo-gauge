@@ -1,7 +1,8 @@
-import React, { FC } from "react";
-import ReferencePhoto from "./ReferencePhoto";
-import { useStore } from "./store";
-import Spinner from "./components/spinner";
+import React, { FC } from 'react';
+
+import Spinner from './components/spinner';
+import ReferencePhoto from './ReferencePhoto';
+import { useStore } from './store';
 
 const ReferencePhotos: FC = () => {
   const references = useStore((s) => s.references);
