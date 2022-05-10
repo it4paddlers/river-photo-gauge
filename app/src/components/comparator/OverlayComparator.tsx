@@ -44,7 +44,7 @@ export const OverlayComparator: FC<ComparatorProps> = ({
       <img
         src={top}
         className={clsx('absolute inset-0 object-contain', imgClassName, {
-          hidden,
+          invisible: hidden,
         })}
         onContextMenu={ignoreEvent}
       />
