@@ -1,10 +1,12 @@
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig((configEnv) => {
   const isDevelopment = configEnv.mode === 'development';
+  const env = loadEnv(configEnv.mode, process.cwd(), '');
 
   return {
+    base: env.BASE_PATH ?? '/',
     plugins: [react()],
     css: {
       modules: {
