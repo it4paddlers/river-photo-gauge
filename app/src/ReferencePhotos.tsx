@@ -11,7 +11,7 @@ const ReferencePhotos: FC = () => {
 
   if (loading) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="w-full md:w-auto md:h-full flex items-center justify-center">
         <Spinner />
       </div>
     );

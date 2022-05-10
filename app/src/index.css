@@ -12,7 +12,7 @@
   body {
     @apply w-full;
     @apply min-h-screen;
-    @apply p-4;
+    @apply px-2 py-4 md:p-4;
   }
 
   h1 {

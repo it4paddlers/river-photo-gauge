@@ -11,14 +11,19 @@ const MainPhoto: FC = () => {
 
   if (loading) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="aspect-4/3 md:h-full flex items-center justify-center">
         <Spinner />
       </div>
     );
   }
 
   return (
-    <OverlayComparator className="h-full" top={photo?.url} bottom={reference} />
+    <OverlayComparator
+      className="aspect-4/3 md:aspect-auto md:h-full"
+      top={photo?.url}
+      bottom={reference}
+      imgClassName="rounded-lg"
+    />
   );
 
   // return (

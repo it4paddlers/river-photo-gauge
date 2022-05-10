@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React, { FC, SyntheticEvent, useCallback, useState } from 'react';
+import React, { FC, SyntheticEvent, useCallback } from 'react';
+import useToggle from 'react-use/lib/useToggle';
 
 import { ComparatorProps } from './types';
 
@@ -11,19 +12,26 @@ function ignoreEvent(event: SyntheticEvent) {
 
 export const OverlayComparator: FC<ComparatorProps> = ({
   className,
+  imgClassName,
   top,
   bottom,
 }) => {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, toggleHidden] = useToggle(false);
 
   const onPress = useCallback(() => {
-    setHidden(true);
+    toggleHidden(true);
     const show = () => {
-      setHidden(false);
+      toggleHidden(false);
       document.removeEventListener('mouseup', show);
     };
     document.addEventListener('mouseup', show);
-  }, [setHidden]);
+  }, [toggleHidden]);
+
+  // console.log(
+  //   clsx('absolute inset-0 object-contain', imgClassName, {
+  //     hidden,
+  //   }),
+  // );
 
   return (
     <div
@@ -33,12 +41,14 @@ export const OverlayComparator: FC<ComparatorProps> = ({
     >
       <img
         src={bottom}
-        className="absolute inset-0 object-contain"
+        className={clsx('absolute inset-0 object-contain', imgClassName)}
         onContextMenu={ignoreEvent}
       />
       <img
         src={top}
-        className={clsx('absolute inset-0 object-contain', { hidden })}
+        className={clsx('absolute inset-0 object-contain', imgClassName, {
+          hidden,
+        })}
         onContextMenu={ignoreEvent}
       />
     </div>
