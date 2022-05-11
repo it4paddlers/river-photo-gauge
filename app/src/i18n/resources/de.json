@@ -1,0 +1,15 @@
+{
+    "translation": {
+        "title": "Flussfoto-Anzeige",
+        "info": "Ort: Ausstieg des <1>{{name}}</1> abschnitt",
+        "dateFilterLabel": "Datumsbereich:",
+        "timeFilterLabel": "Zeitspanne:",
+        "next": "Nächste",
+        "prev": "Bisherige",
+        "calibration": {
+            "0": "Niedrig",
+            "1": "Mittel",
+            "2": "Hoch"
+        }
+    }
+}

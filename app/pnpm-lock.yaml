@@ -30,6 +30,7 @@ specifiers:
   eslint-plugin-unused-imports: ^2.0.0
   flowbite: ^1.4.5
   i18next: ^21.8.0
+  i18next-browser-languagedetector: ^6.1.4
   identity-obj-proxy: ^3.0.0
   lodash: ^4.17.21
   postcss: ^8.4.12
@@ -53,6 +54,7 @@ dependencies:
   date-fns: 2.28.0
   flowbite: 1.4.5
   i18next: 21.8.0
+  i18next-browser-languagedetector: 6.1.4
   lodash: 4.17.21
   react: 18.1.0
   react-compare-slider: 2.2.0_react-dom@18.1.0+react@18.1.0
@@ -2191,6 +2193,12 @@ packages:
 
   /hyphenate-style-name/1.0.4:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
+    dev: false
+
+  /i18next-browser-languagedetector/6.1.4:
+    resolution: {integrity: sha512-wukWnFeU7rKIWT66VU5i8I+3Zc4wReGcuDK2+kuFhtoxBRGWGdvYI9UQmqNL/yQH1KogWwh+xGEaIPH8V/i2Zg==}
+    dependencies:
+      '@babel/runtime': 7.17.9
     dev: false
 
   /i18next/21.8.0:
