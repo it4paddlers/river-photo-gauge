@@ -19,7 +19,7 @@ const MainPhoto: FC = () => {
 
   return (
     <OverlayComparator
-      className="aspect-4/3 md:aspect-auto md:h-full"
+      className="aspect-4/3 w-full md:aspect-auto md:h-full"
       top={photo?.url}
       bottom={reference}
       imgClassName="rounded md:rounded-lg"
