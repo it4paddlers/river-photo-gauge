@@ -10,6 +10,7 @@
             "0": "Niedrig",
             "1": "Mittel",
             "2": "Hoch"
-        }
+        },
+        "comparatorHint": "Tippen Sie auf und halten Sie ein großes Foto, um es mit dem Referenzfoto zu vergleichen"
     }
 }

@@ -10,6 +10,7 @@
             "0": "Low",
             "1": "Medium",
             "2": "High"
-        }
+        },
+        "comparatorHint": "Tap and hold big photo to compare it to reference photo"
     }
 }

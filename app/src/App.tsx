@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import useMount from 'react-use/lib/useMount';
 
+import { ComparatorHint } from './components/comparator';
 import Filters from './Filters';
 import Info from './Info';
 import NavButtons from './NavButtons';
@@ -8,6 +10,7 @@ import Photos from './Photos';
 import { useStore } from './store';
 
 const App: FC = () => {
+  const { t } = useTranslation();
   const init = useStore((s) => s.init);
   useMount(init);
 
@@ -19,6 +22,10 @@ const App: FC = () => {
 
       <div className="bg-white p-2 md:p-4 rounded md:rounded-lg">
         <Filters />
+      </div>
+
+      <div className="bg-white p-2 md:p-4 rounded md:rounded-lg empty:hidden">
+        <ComparatorHint />
       </div>
 
       <div className="bg-white p-2 md:p-4 rounded md:rounded-lg">
