@@ -1,7 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import format from 'date-fns/format';
 import React, { FC } from 'react';
-// eslint-disable-next-line import/named
 import Picker, { ReactDatePickerProps } from 'react-datepicker';
 
 import Chevron from './Chevron';

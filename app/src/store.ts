@@ -6,8 +6,7 @@ import { fetchPhotos, fetchReferences } from './api';
 import { Photo } from './types';
 
 export interface State {
-  fromDate: Date;
-  toDate: Date;
+  dateRange: [fromDate: Date, toDate: Date];
 
   // Within each day only photos in this hour rannge will be displayed
   timeRange: [fromHour: number, toHour: number];
@@ -30,8 +29,7 @@ export interface Actions {
 }
 
 export const useStore = create<State & Actions>((set, get) => ({
-  fromDate: sub(new Date(), { days: 3 }),
-  toDate: new Date(),
+  dateRange: [sub(new Date(), { days: 3 }), new Date()],
   timeRange: [0, 24],
 
   photos: [],
@@ -50,7 +48,7 @@ export const useStore = create<State & Actions>((set, get) => ({
     try {
       set({ photosLoading: true });
       const photos = await fetchPhotos(from, to);
-      set({ photos, selectedPhotoIndex: 0 });
+      set({ photos, selectedPhotoIndex: 0, dateRange: [from, to] });
     } catch (e) {
       console.error('failed to fetch photos', e);
     } finally {
@@ -63,11 +61,11 @@ export const useStore = create<State & Actions>((set, get) => ({
   },
 
   init: async () => {
-    const { fromDate, toDate } = get();
+    const { dateRange } = get();
     try {
       set({ photosLoading: true, referencesLoading: true });
       const [photos, references] = await Promise.all([
-        fetchPhotos(fromDate, toDate),
+        fetchPhotos(...dateRange),
         fetchReferences(),
       ]);
       set({ photos, selectedPhotoIndex: 0, references });
