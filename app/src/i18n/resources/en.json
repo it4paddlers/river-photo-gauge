@@ -1,16 +1,16 @@
 {
-    "translation": {
-        "title": "River Photo Gauge",
-        "info": "Location: Takeout of the <1>{{name}}</1> section",
-        "dateFilterLabel": "Date range:",
-        "timeFilterLabel": "Time range:",
-        "next": "Next",
-        "prev": "Previous",
-        "calibration": {
-            "0": "Low",
-            "1": "Medium",
-            "2": "High"
-        },
-        "comparatorHint": "Tap and hold big photo to compare it to reference photo"
-    }
+  "translation": {
+    "title": "River Photo Gauge",
+    "info": "Location: Takeout of the <1>{{name}}</1> section",
+    "dateFilterLabel": "Date range:",
+    "timeFilterLabel": "Time range:",
+    "next": "Next",
+    "prev": "Previous",
+    "calibration": {
+      "0": "Low",
+      "1": "Medium",
+      "2": "High"
+    },
+    "comparatorHint": "Tap and hold big photo to compare it to reference photo"
+  }
 }

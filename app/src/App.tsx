@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 import useMount from 'react-use/lib/useMount';
 
 import { ComparatorHint } from './components/comparator';
@@ -10,7 +9,6 @@ import Photos from './Photos';
 import { useStore } from './store';
 
 const App: FC = () => {
-  const { t } = useTranslation();
   const init = useStore((s) => s.init);
   useMount(init);
 

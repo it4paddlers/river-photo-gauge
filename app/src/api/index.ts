@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import format from 'date-fns/format';
 import setTime from 'date-fns/set';
 
