@@ -21,7 +21,10 @@ To add a translation, add new json translation file to [src/i18n/resources](src/
 Supported languages:
 
 - English
-- German (via google translate)
+- German
+- French
+- Italian
+
 
 ## Development
 

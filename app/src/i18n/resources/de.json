@@ -1,16 +1,16 @@
 {
   "translation": {
-    "title": "Flussfoto-Anzeige",
-    "info": "Ort: Ausstieg des <1>{{name}}</1> abschnitt",
-    "dateFilterLabel": "Datumsbereich:",
-    "timeFilterLabel": "Zeitspanne:",
-    "next": "Nächste",
-    "prev": "Bisherige",
+    "title": "River Photo Gauge",
+    "info": "Ort: Ausstieg des Abschnitts <1>{{name}}</1>.",
+    "dateFilterLabel": "Datum:",
+    "timeFilterLabel": "Zeit:",
+    "next": "Vor",
+    "prev": "Zurück",
     "calibration": {
       "0": "Niedrig",
       "1": "Mittel",
       "2": "Hoch"
     },
-    "comparatorHint": "Tippen und halten Sie Referenzfoto, um es mit dem aktuellen Foto zu vergleichen"
+    "comparatorHint": "Tippe und halte ein Referenzfoto, um es mit dem aktuellen Foto zu vergleichen."
   }
 }
