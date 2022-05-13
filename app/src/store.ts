@@ -4,6 +4,7 @@ import create from 'zustand';
 
 import { fetchPhotos, fetchReferences } from './api';
 import { Photo } from './types';
+import filterPhotosByTime from './utils/filterPhotosByTime';
 
 export interface State {
   dateRange: [fromDate: Date, toDate: Date];
@@ -48,7 +49,12 @@ export const useStore = create<State & Actions>((set, get) => ({
     try {
       set({ photosLoading: true });
       const photos = await fetchPhotos(from, to);
-      set({ photos, selectedPhotoIndex: 0, dateRange: [from, to] });
+      const filtered = filterPhotosByTime(photos, get().timeRange);
+      set({
+        photos,
+        selectedPhotoIndex: filtered.length - 1,
+        dateRange: [from, to],
+      });
     } catch (e) {
       console.error('failed to fetch photos', e);
     } finally {
@@ -57,18 +63,20 @@ export const useStore = create<State & Actions>((set, get) => ({
   },
 
   setTimeRange: (timeRange) => {
-    set({ timeRange, selectedPhotoIndex: 0 });
+    const filtered = filterPhotosByTime(get().photos, timeRange);
+    set({ timeRange, selectedPhotoIndex: filtered.length - 1 });
   },
 
   init: async () => {
-    const { dateRange } = get();
+    const { dateRange, timeRange } = get();
     try {
       set({ photosLoading: true, referencesLoading: true });
       const [photos, references] = await Promise.all([
         fetchPhotos(...dateRange),
         fetchReferences(),
       ]);
-      set({ photos, selectedPhotoIndex: 0, references });
+      const filtered = filterPhotosByTime(photos, timeRange);
+      set({ photos, selectedPhotoIndex: filtered.length - 1, references });
     } catch (e) {
       console.error('failed to fetch photos', e);
     } finally {
@@ -79,13 +87,10 @@ export const useStore = create<State & Actions>((set, get) => ({
 
 export function useFilteredPhotos(): Photo[] {
   const photos = useStore((state) => state.photos);
-  const [fromHour, toHour] = useStore((state) => state.timeRange);
+  const timeRange = useStore((state) => state.timeRange);
   return useMemo(() => {
-    return photos.filter((p) => {
-      const h = p.date.getHours();
-      return h >= fromHour && h <= toHour;
-    });
-  }, [photos, fromHour, toHour]);
+    return filterPhotosByTime(photos, timeRange);
+  }, [photos, timeRange]);
 }
 
 export function useCurrentPhoto(): Photo | undefined {
