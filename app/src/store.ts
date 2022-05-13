@@ -30,7 +30,7 @@ export interface Actions {
 
 export const useStore = create<State & Actions>((set, get) => ({
   dateRange: [sub(new Date(), { days: 3 }), new Date()],
-  timeRange: [0, 24],
+  timeRange: [6, 21], // reasonable default time range in summer
 
   photos: [],
   photosLoading: false,
