@@ -17,6 +17,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest",
+    "typecheck": "tsc",
     "nibble": "eslint-nibble \"**/*.{ts,tsx}\" --cache"
   },
   "dependencies": {

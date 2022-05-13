@@ -18,7 +18,7 @@ export const TimeRange: FC<TimeRangeProps> = ({ values, onChange }) => {
       step={STEP}
       min={MIN}
       max={MAX}
-      onChange={onChange}
+      onChange={onChange as (values: number[]) => void}
       renderMark={({ props, index }) => (
         <Mark {...props} index={index} values={values} />
       )}

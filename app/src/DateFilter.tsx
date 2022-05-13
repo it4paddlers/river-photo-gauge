@@ -15,7 +15,9 @@ const DateFilter: FC = () => {
       <DatePicker
         selected={fromDate}
         onChange={(date) => {
-          setDateRange(date, toDate);
+          if (date) {
+            setDateRange(date, toDate);
+          }
         }}
         selectsEnd
         maxDate={toDate}
@@ -24,7 +26,9 @@ const DateFilter: FC = () => {
       <DatePicker
         selected={toDate}
         onChange={(date) => {
-          setDateRange(fromDate, date);
+          if (date) {
+            setDateRange(fromDate, date);
+          }
         }}
         selectsEnd
         minDate={fromDate}
