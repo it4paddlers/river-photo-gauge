@@ -1,10 +1,17 @@
 import clsx from 'clsx';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
+import { ReferencePhotos } from './components/reference-photos';
 import MainPhoto from './MainPhoto';
-import ReferencePhotos from './ReferencePhotos';
+import { useCurrentPhoto, useStore } from './store';
 
 const Photos: FC = () => {
+  const [reference, setReference] = useState<string | null>(null);
+  const photo = useCurrentPhoto();
+  const photosLoading = useStore().photosLoading;
+  const referencesLoading = useStore().referencesLoading;
+  const references = useStore().references;
+
   return (
     <div
       className={clsx(
@@ -20,7 +27,11 @@ const Photos: FC = () => {
           'flex aspect-4/3',
         )}
       >
-        <MainPhoto />
+        <MainPhoto
+          photo={photo}
+          reference={reference}
+          loading={photosLoading || referencesLoading}
+        />
       </div>
 
       <div
@@ -30,21 +41,14 @@ const Photos: FC = () => {
           'flex-row pt-4 md:pt-0 space-x-4 md:space-x-0',
         )}
       >
-        <ReferencePhotos />
+        <ReferencePhotos
+          loading={referencesLoading}
+          onSelect={setReference}
+          references={references}
+        />
       </div>
     </div>
   );
-  // return (
-  //   <div className="flex flex-row">
-  //     <div className="basis-4/5 self-stretch overflow-y-hidden rounded md:rounded-lg">
-  //       <MainPhoto />
-  //     </div>
-
-  //     <div className="basis-1/5 flex flex-col pl-4 space-y-4">
-  //       <ReferencePhotos />
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default Photos;

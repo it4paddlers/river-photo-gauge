@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
 
-import { OverlayComparator } from './components/comparator';
 import Spinner from './components/spinner';
-import { useCurrentPhoto, useReferencePhoto, useStore } from './store';
+import { Photo } from './types';
 
-const MainPhoto: FC = () => {
-  const loading = useStore((s) => s.photosLoading);
-  const photo = useCurrentPhoto();
-  const reference = useReferencePhoto();
+interface MainPhotoProps {
+  loading: boolean;
+  photo?: Photo;
+  reference: string | null;
+}
 
+const MainPhoto: FC<MainPhotoProps> = ({ loading, photo, reference }) => {
   if (loading) {
     return (
       <div className="aspect-4/3 md:h-full flex items-center justify-center">
@@ -18,17 +19,13 @@ const MainPhoto: FC = () => {
   }
 
   return (
-    <OverlayComparator
-      className="aspect-4/3 w-full md:aspect-auto md:h-full"
-      top={photo?.url}
-      bottom={reference}
-      imgClassName="rounded md:rounded-lg"
-    />
+    <div className="relative aspect-4/3 w-full md:aspect-auto md:h-full">
+      <img
+        src={reference ?? photo?.url}
+        className="rounded md:rounded-lg absolute inset-0 object-contain"
+      />
+    </div>
   );
-
-  // return (
-  //   <SlideComparator className="h-full" top={photo?.url} bottom={reference} />
-  // );
 };
 
 export default MainPhoto;

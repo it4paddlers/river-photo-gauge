@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import useMount from 'react-use/lib/useMount';
 
-import { ComparatorHint } from './components/comparator';
+import ComparatorHint from './components/ComparatorHint';
 import Filters from './Filters';
 import Info from './Info';
 import NavButtons from './NavButtons';
