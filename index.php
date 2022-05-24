@@ -1,17 +1,28 @@
 <?php
 // The directory where this file resides is meant to contain a fixed number of webcam pics which get overwritten in rotating order, as new images are uploaded every hour.
 
-// The intent of this file is to return a html page that shows all images in the current directory, along with photo-timestamps.
+// The intent of this file is to return either a json of images and timestamps or a html page that shows all images in the current directory, along with photo-timestamps.
 
 
 // Report all PHP errors
 error_reporting(E_ALL);
+// for testing, we want to access the json from anywhere:
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 
 define('IMG_PREFIX', 'Wassenphoto');
 define('PREFIXLEN', strlen(IMG_PREFIX));
 define ('DEFAULTRANGE', 172800); // how many days back from the latest pic should be shown? eg. one week aka 604800sec.
 
 $directory = './current/';
+$calDir = './calibration_images/';
+
+// create array of ref. images for json output...
+$refImages = array(
+  "min" => $calDir . "min.jpg",
+  "med" => $calDir . "med.jpg",
+  "max" => $calDir . "max.jpg"
+);
 
 // get directory contents
 $listing = scandir($directory);
@@ -90,6 +101,20 @@ foreach($orderedFiles as $date => $name){
 $newestRequested_date = date('Y-m-d\TH:i', $newestRequested_ts);
 $oldestRequested_date = date('Y-m-d\TH:i', $oldestRequested_ts);
 
+
+
+// if requested, output json instead of html
+
+if(isset($_GET['json'])){
+  echo json_encode($orderedFiles)."\n";
+  die;
+}
+
+
+if(isset($_GET['json_cal'])){
+  echo json_encode($refImages)."\n";
+  die;
+}
 
 
 
