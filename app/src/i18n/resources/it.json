@@ -1,7 +1,7 @@
 {
   "translation": {
     "title": "River Photo Gauge",
-    "info": "Località: Sbarco della sezione <1>{{name}}</1>.",
+    "info": "Località: Sägerei Wassen, Sbarco della sezione {{name}}.",
     "dateFilterLabel": "Data:",
     "timeFilterLabel": "Tempo:",
     "next": "prossima",

@@ -1,7 +1,7 @@
 {
   "translation": {
     "title": "River Photo Gauge",
-    "info": "Ort: Ausstieg des Abschnitts <1>{{name}}</1>.",
+    "info": "Ort: Sägerei Wassen, Ausstieg des Abschnitts {{name}}.",
     "dateFilterLabel": "Datum:",
     "timeFilterLabel": "Zeit:",
     "next": "Vor",
