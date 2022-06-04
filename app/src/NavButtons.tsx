@@ -26,7 +26,7 @@ const NavButtons: FC = () => {
       </Button>
       {!!total && !!current && (
         <div className="flex flex-col justify-center items-center min-w-50">
-          <span>{format(current.date, 'HH:mm - E, dd. MMM yyyyy')}</span>
+          <span>{format(current.date, 'HH:mm - E, dd. MMM yyyy')}</span>
           <span className="font-mono text-xs text-gray-500">{`${padStart(
             String(index + 1),
             1 + Math.log10(total),
