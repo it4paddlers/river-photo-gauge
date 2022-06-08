@@ -1,0 +1,16 @@
+{
+  "translation": {
+    "title": "River Photo Gauge",
+    "info": "Emplacement: Sägerei Wassen, Au Débarqement de la section {{name}}.",
+    "dateFilterLabel": "Date:",
+    "timeFilterLabel": "Temps:",
+    "next": "Suivante",
+    "prev": "Précédente",
+    "calibration": {
+      "0": "Bas",
+      "1": "Moyen",
+      "2": "Haute"
+    },
+    "comparatorHint": "Appuyez et maintenez la photo de référence pour la comparer avec la photo actuelle."
+  }
+}

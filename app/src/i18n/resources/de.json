@@ -1,0 +1,16 @@
+{
+  "translation": {
+    "title": "River Photo Gauge",
+    "info": "Ort: Sägerei Wassen, Ausstieg des Abschnitts {{name}}.",
+    "dateFilterLabel": "Datum:",
+    "timeFilterLabel": "Zeit:",
+    "next": "Vor",
+    "prev": "Zurück",
+    "calibration": {
+      "0": "Niedrig",
+      "1": "Mittel",
+      "2": "Hoch"
+    },
+    "comparatorHint": "Tippe und halte ein Referenzfoto, um es mit dem aktuellen Foto zu vergleichen."
+  }
+}

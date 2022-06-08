@@ -1,0 +1,16 @@
+{
+  "translation": {
+    "title": "River Photo Gauge",
+    "info": "Località: Sägerei Wassen, Sbarco della sezione {{name}}.",
+    "dateFilterLabel": "Data:",
+    "timeFilterLabel": "Tempo:",
+    "next": "prossima",
+    "prev": "precedente",
+    "calibration": {
+      "0": "Basso",
+      "1": "Medio",
+      "2": "Alto"
+    },
+    "comparatorHint": "Tocca e tieni premuta la foto di riferimento per confrontarla con la foto attuale."
+  }
+}

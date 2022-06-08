@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Because git hooks run at git root level
+cd app
+
+pnpm commitlint --edit "$1"
