@@ -1,11 +1,12 @@
 # river-photo-gauge
-This is code to present webcam-images of rivers,
-meant to be used for judging the waterlevel
-and to compare the depicted flow to reference-images
-which show known levels of minimal/medium/high flow for paddling on that river.
+Code for a Website (React App) that presents Webcam-Images of River Waterlevels in a Way that facilitates the Comparison of a current Image
+against reference Images which show known Levels of Minimal/Medium/High Flow for paddling on that River.
 
-A first use case is a [Webcam on the river Reuss](https://it4paddlers.org/webcams/wassen/index.php).
-Currently we only have the very basic image presentation (from `index.php`), but on top of our TODO is a more practical user interface involving JS.
-The prototype of that, so far with dummy content only, is testable [here](https://it4paddlers.org/webcams/wassen/app/build/) (the `app` folder from this repo). 
+![35980472-6efc-4c95-a382-81d4bb0729d8](https://user-images.githubusercontent.com/3509308/172705065-2ac8ab1a-6559-4194-8a4f-fe9acbdbad61.gif)
+
+
+You can see it in use on the [Webcam on the River Reuss](https://it4paddlers.org/webcams/wassen/).
+The current State of this Project is a minimum viable product, see the [Issue Que](https://github.com/it4paddlers/river-photo-gauge/issues) for future Improvements.
+Work on the React App was funded by [Swiss Canoe Federation](https://swisscanoe.ch/de/tourenwesen).
 
 More on [Gauge Webcams](https://docs.google.com/document/d/1p398I5prpEqUVxoj-CzpbUMImztJaH_K8-nVY8LKkwc).
